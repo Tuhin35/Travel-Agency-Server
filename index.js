@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors')
 require('dotenv').config();
 var jwt = require('jsonwebtoken');
-
+const stripe = require("stripe")(process.env.STRIPE_SECRET)
 const app = express();
 const port =process.env.PORT || 5000;
 
@@ -42,10 +42,11 @@ async function run (){
     try{
         const placesCollection = client.db('travelAgency').collection('places')
         const orderCollection = client.db('travelAgency').collection('orders')
+        const paymentsCollection = client.db('travelAgency').collection('payments')
 
         app.post('/jwt',(req,res)=>{
             const user = req.body;
-            const token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{expiresIn:'1h'})
+            const token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
             res.send({token})
             
         })
@@ -78,7 +79,7 @@ async function run (){
      const query = {};
 
      const cursor = placesCollection.find(query)
-     const place = await cursor.limit(2).toArray();
+     const place = await cursor.limit(3).toArray();
  res.send(place)
         })
 
@@ -134,6 +135,13 @@ async function run (){
  res.send(orders)
         })
 
+        app.get('/orders/:id',async(req,res)=>{
+            const id = req.params.id;
+            const query = {_id : new ObjectId(id)}
+            const order = await orderCollection.findOne(query);
+            res.send(order)
+          })
+
         app.patch('/orders/:id',async (req,res)=>{
             const id = req.params.id;
             const status = req.body.status;
@@ -154,6 +162,42 @@ async function run (){
  res.send(result)
 
         })
+
+         // Payment Gateway
+    app.post('/create-payment-intent',async(req,res)=>{
+        const booking = req.body;
+        const price = booking.price;
+        const amount = price* 100;
+  
+        const paymentIntent = await stripe.paymentIntents.create({
+          currency : 'usd',
+          amount : amount,
+          "payment_method_types":[
+            "card"
+          ]
+        })
+        res.send({
+          clientSecret: paymentIntent.client_secret,
+        })
+  
+      })
+
+      // save payment data
+ app.post('/payments',async(req,res)=>{
+  const payment = req.body;
+  const result = await paymentsCollection.insertOne(payment);
+  const id = payment.bookingId
+const filter = {_id: new ObjectId(id)}
+const updatedDoc = {
+  $set:{
+    paid: true,
+    transactionId:payment.transactionId
+  }
+}
+
+const updatedResult = await orderCollection.updateOne(filter,updatedDoc)
+  res.send(result)
+ })
 
 
 

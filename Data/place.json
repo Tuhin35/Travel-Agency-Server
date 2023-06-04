@@ -130,5 +130,45 @@
         "rating": 4.6,
         "Cost": 14189
       }
+    },
+    {
+      "title": "Tanguor-hower",
+      "picture": "https://i.ibb.co/1XV0X9v/Tanguor-hower.jpg",
+      "Per_Year": "60500",
+      "about": "Tanguar Haor is also called Tangua haor , located in the Dharmapasha and Tahirpur upazilas of Sunamganj District in Bangladesh, is a unique wetland ecosystem of national importance and has come into international focus..",
+      "tags": {
+        "rating": "3.9",
+        "Cost": "10499"
+      }
+    },
+    {
+      "title": "Jaflong",
+      "picture": "https://i.ibb.co/Tt9rfLX/jaflong.jpg",
+      "Per_Year": "83045",
+      "about": "Jaflong is a tourist spot in Sylhet division. It is about 60 km from Sylhet town and takes two hours drive to reach there. Jaflong located amidst tea gardens and hills. It is situated beside the river Sari in the lap of Hill Khashia.",
+      "tags": {
+        "rating": "4.2",
+        "Cost": "12499"
+      }
+    },
+    {
+      "title": "sajek valley",
+      "picture": "https://i.ibb.co/zxkRxyp/sajek.jpg",
+      "Per_Year": "90000",
+      "about": "Sajek valley is known for its natural environment and is surrounded by mountains, dense forest, and grassland hill tracks. Many small rivers flow through the mountains among which the Kachalong and the Machalong are notable. On the way to Sajek valley, one has to cross the Mayni range and the Mayni river. The road to Sajek has high peaks and falls",
+      "tags": {
+        "rating": "4.6",
+        "Cost": "15000"
+      }
+    },
+    {
+      "title": "Saint Martin Island",
+      "picture": "https://i.ibb.co/j5bkyJG/seintmartin.jpg",
+      "Per_Year": "100000",
+      "about": "Millennia ago, the island used to be an extension of the Teknaf peninsula, but at a later time some portion of this peninsula got submerged and thus the southernmost part of the aforementioned peninsula became an island, and was disconnected from the Bangladesh mainland. The first settlement started 250 years ago, in 18th century, by Arabian merchants who named the island 'Jazira'. During British occupation the island was named after the then Deputy Commissioner of Chittagong Mr. Martin as St. Martin Island.[3] Likely because one or more of the Arabs were Saint and whose name could not be identified. Local names of the island are Narikel jinjira[4] which means 'Coconut Island', and Daruchini Dwip which means Cinnamon island. It is the only coral island in Bangladesh",
+      "tags": {
+        "rating": "4.8",
+        "Cost": "14999"
+      }
     }
   ]
